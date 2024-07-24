@@ -1,0 +1,181 @@
+﻿ <!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    {% load static %}
+    {% load dict_templates %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}" >
+    <style >
+      h2{
+        text-allign: "center";
+        padding-left:"250px";
+      }
+      .ctable{
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .cthead{
+        text-align: center;
+      }
+
+    </style>
+    <script>
+      function alerts(){
+        {% if flag_app_success %}
+          alert("Successfull Applied")
+        {% endif %}
+      }
+    </script>
+
+  </head>
+<body data-spy="scroll" data-target=".navbar" data-offset="50">
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+    <div class="menu">
+      <div class="logo1">
+        <a href="/"><img src="{% static 'images/img-01.png' %}" style="border: 0.25px solid orangered; border-radius: 100cm;" height="90px"></a>
+      </div>
+      <ul class="navbar-nav">
+
+        <li><a href="#section1" >Apply</a></li>
+        <li><a href="#section2" >Application Status</a></li>
+        <li><a href="#section3">Training</a></li>
+        <li><a href="#section4">VideoBytes</a></li>
+        <li><a href="#section5">Contact Us</a></li>
+        <li><a href="/logout/">Log Out</a></li>
+      </ul>
+    </div>
+  </nav>
+  <div class="img" style="background-image: url('/app1/static/images/bg1.jpg');">
+  <a id="section1"></a>
+    <br><br>
+    <div class="center">
+      <div class="title">Click Here to Apply</div>
+      <div class="btns">
+        <button onclick="location='companies/'">Apply</button>
+      </div>
+    </div>
+  </div>
+  <div class="container-login100">
+    <a id="section2"></a>
+    <br><br><br><br>
+    <br><br><br><br>
+    <br><br><br><br>
+    <br><br><br><br>
+    
+    <br><br><br><br>
+    <center>
+    <div class="wrap-company">
+       
+        <br><br>
+        <br><br><br> <span class="login100-form-title">Application Status</span>
+        {% if flag_app %}
+          
+            <!-- <h2>{{application.aggregate}} </h2> -->
+            
+            <table  border="1" cellpadding="5" class="ctable" >
+              <thead class="cthead" style="color:White">
+                <th>Company</th>
+                <th>Designation</th>
+                <th>Job Type</th>
+                <th>Eligibility</th>
+                <th>Bond Contract</th>
+                <th>CTC PA</th>
+                <th>Shortlist</th>
+                <th>Written Test</th>
+                <th>GD</th>
+                <th>Interview</th>
+                <th>No of Rounds</th>
+                <th>Resume</th> 
+                <th>Status</th>
+              </thead>
+              <tbody class="cbody" style="color:White">
+                {% for application in applications %}
+                  <tr><td>{{application.offer.company.name}}</td>
+                  <td>{{application.offer.designation}}</td>
+                  <td>{{application.offer.job_type}}</td>
+                  <td>{{application.offer.eligibility}}</td>
+                  <td>{{application.offer.bond_contract}}</td>
+                  <td>{{application.offer.ctc_pa}}</td>
+                  <td>{{application.offer.shortlist}}</td>
+                  <td>{{application.offer.written_test}}</td>
+                  <td>{{application.offer.gd}}</td>
+                  <td>{{application.offer.interview}}</td>
+                  <td>{{application.offer.no_of_rounds}}</td>
+                  <td><a href="/{{ application.resume }}">View</a></td>
+                  <td>{{ status|get_item:application.status }} </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          
+        {% else %}  
+          <h2> You have not applied for any positon</h2>
+        {% endif %}
+     </div>
+    </center>
+     <br><br><br><br>
+     <br><br><br><br>
+     <br><br><br><br>
+  <div class="container-login100">
+    <a id="section2"></a>
+    <br><br><br><br>
+    <br><br><br><br>
+    <br><br><br><br>
+    <br><br><br><br>
+    
+    <br><br><br><br>
+    
+    <div class="wrap-login100">
+       
+        <br><br>
+        <br><br><br> <span class="login100-form-title">Training</span>
+        <div class="homepgbtn-form-btn" onclick="location='https://youtu.be/c2hbT0uIcOQ'">Module 1</div>
+        <div class="homepgbtn-form-btn" onclick="location='https://youtu.be/c2hbT0uIcOQ'">Module 2</div>
+        <div class="homepgbtn-form-btn" onclick="location='https://youtu.be/c2hbT0uIcOQ'">Module 3</div>
+     </div>
+     <br><br><br><br>
+     <br><br><br><br>
+     <br><br><br><br>
+    <a id="section3"></a>
+
+    <div class="wrap-login100">
+       
+        <br><br>
+        <br><br><br> <span class="login100-form-title">VideoBytes</span>
+        <video allign="center" width="320" height="240" controls autoplay muted>
+          <source src="{% static 'Videobytes1.mp4' %}" type="video/mp4">
+        Your browser does not support the video tag.
+        </video> &ensp;&ensp;&ensp;&ensp;
+        <video allign="center" width="320" height="240" controls autoplay muted>
+          <source src="{% static 'Videobytes1.mp4' %}" type="video/mp4">
+        Your browser does not support the video tag.
+        </video> 
+    </div> 
+    <br><br><br><br>
+     <br><br><br><br>
+     <br><br><br><br>
+    <br><br><br><br>
+    <br><br><br><br>
+    <br><br><br><br>
+    <br><br><br><br>
+    <br><br><br><br>
+    <a id="section4"></a>
+    <br><br><br><br>
+    <br><br><br><br>
+   <div class="wrap-login100"> 
+      <a id="section4"></a>
+        <br><br>
+        <br><br><br> <span class="login100-form-title">Contact Us</span><br>
+        <i class='fa fa-phone'>&ensp;&ensp;+91 9665967623</i>
+        &ensp;&ensp;
+        <i class='fa fa-inbox'></i>recruitroot404@gmail.com
+  </div>
+    
+
+</body>
+</html>

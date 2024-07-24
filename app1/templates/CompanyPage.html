@@ -1,0 +1,124 @@
+<html>
+    <head>
+        {% load static %}
+        {% load dict_templates %}
+        <meta charset="UTF-8">
+        <title>HomePage</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->	
+        <link rel="icon" type="image/png" href="{% static 'images/icons/favicon.ico' %}"/>
+    <!--===============================================================================================-->
+        <!-- <link rel="stylesheet" type="text/css" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}"> -->
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="{% static 'fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+    <!--===============================================================================================-->
+        <!-- <link rel="stylesheet" type="text/css" href="{% static 'vendor/animate/animate.css' %}"> -->
+    <!--===============================================================================================-->	
+        <!-- <link rel="stylesheet" type="text/css" href="{% static 'vendor/css-hamburgers/hamburgers.min.css' %}"> -->
+    <!--===============================================================================================-->
+        <!-- <link rel="stylesheet" type="text/css" href="{% static 'vendor/select2/select2.min.css' %}"> -->
+    <!--===============================================================================================-->
+        <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/util.css' %}"> -->
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    <!--===============================================================================================-->
+    <style>
+        .button {
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+        .ctable{
+            text-align: center;
+            
+        }
+        .cthead{
+            text-align: center;
+        }
+
+        .button1 {background-color: #4CAF50;} /* Green */
+        .button2 {background-color: #ff0212;} /* Blue */
+    </style></head>
+    <body bgcolor="#001720" data-spy="scroll" data-target=".navbar" data-offset="50">
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+          <div class="menu">
+            <div class="logo1">
+              <a href="/"><img src="{% static 'images/img-01.png' %}" style="border: 0.25px solid orangered; border-radius: 100cm;" height="90px"></a>
+            </div>
+            <ul class="navbar-nav">
+              
+              <li><a href="/logout/">Log Out</a></li>
+            </ul>
+          </div>
+        </nav>
+        <div class="img" style="background-image: url('/app1/static/images/bg1.jpg');">
+        <a id="section1"></a>
+          <br><br>
+          <div class="center">
+            <div class="title">Welcome {{application.offer.company.name}}</div>
+            
+          </div>
+        </div>
+        <div class="container-login100">
+        
+          <div class="wrap-company">
+            <div class="limiter">      
+                <h1 class="login100-form-title"></span>Students Registered for {{application.offer.designation}} Role</h1>
+                  <table  border="1" cellpadding="2" class="ctable" >
+                        <thead class="cthead" style="color:White">
+                            <th >Name</th>
+                            <th>Email</th>
+                            <th>Register No</th>
+                            <th>Phone No</th>
+                            <th>Gender</th>
+                            <th>Year Of Graduation</th>
+                            <th>Combination</th>
+                            <th>10th Marks</th>
+                            <th>12th Marks</th>
+                            <th>Date Of Birth</th>
+                            <th>Designation</th>
+                            <th>Aggregate</th>
+                            <th>Resume</th>
+                            <th>Status</th>
+                        </thead>
+                        <tbody style="color:White">
+                          {% for application in applications %}
+                          <tr>
+                            <td>{{application.student.name}}</td>
+                            <td>{{application.student.email}}</td>
+                            <td>{{application.student.register_no}}</td>
+                            <td>{{application.student.phone_no}}</td>
+                            <td>{{application.student.gender}}</td>
+                            <td>{{application.student.year_of_graduation}}</td>
+                            <td>{{application.student.combination}}</td>
+                            <td>{{application.student.marks10th}}</td>
+                            <td>{{application.student.marks12th}}</td>
+                            <td>{{application.student.dob}}</td>
+                            <td>{{application.offer.designation}}</td>
+                            <td>{{application.aggregate}}</td>
+                            <td><a href="/{{ application.resume }}">View</a></td>
+                            <td>
+                              {% if application.status == 1 %}
+                              <form action="" method="post">{% csrf_token %}<button value="{{application.id}}" name="accept" class="button button1"> Accept</button><button name="reject" value="{{application.id}}" class="button button2"> Reject</button></form>
+                              {% else %}
+                                {{ status|get_item:application.status }}
+                              {% endif %}
+                            </td>
+                          </tr>
+                          {% endfor %}
+                        </tbody>     
+                  </table>  
+            </div>
+          </div>
+           <br><br><br><br>
+           <br><br><br><br>
+           <br><br><br><br>
+    
+    </body>
+</html>  

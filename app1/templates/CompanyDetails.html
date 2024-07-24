@@ -1,0 +1,147 @@
+﻿	<html>
+		<head>
+			{% load static %}
+			<meta charset="UTF-8">
+			<title>{{offer.company.name}}</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!--===============================================================================================-->	
+			<link rel="icon" type="image/png" href="{% static 'images/icons/favicon.ico' %}"/>
+		<!--===============================================================================================-->
+			<link rel="stylesheet" type="text/css" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
+		<!--===============================================================================================-->
+			<link rel="stylesheet" type="text/css" href="{% static 'fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+		<!--===============================================================================================-->
+			<link rel="stylesheet" type="text/css" href="{% static 'vendor/animate/animate.css' %}">
+		<!--===============================================================================================-->	
+			<link rel="stylesheet" type="text/css" href="{% static 'vendor/css-hamburgers/hamburgers.min.css' %}">
+		<!--===============================================================================================-->
+			<link rel="stylesheet" type="text/css" href="{% static 'vendor/select2/select2.min.css' %}">
+		<!--===============================================================================================-->
+			<link rel="stylesheet" type="text/css" href="{% static 'css/util.css' %}">
+			<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+		<!--===============================================================================================-->
+			<script>
+				function alerts(){
+					{% if flag_comb != None %}
+						alert("Your combination doesn't match the Job description")
+					{% elif flag_year != None %}
+						alert("Your graduation year doesn't match the Job description")
+					{% elif flag_applied != None %}
+						alert("You have already applied for this offer")
+					{% elif flag_duedate != None %}
+						alert("Last Date Of the Application has passed")
+					{% endif %}
+		}
+			</script>
+			<style >
+				.text-colour{
+					color: #fff
+				}
+	
+			</style>
+	</head>
+		<body onload="alerts()">
+			<div class="limiter">
+				<div class="container-login100">
+					<h1 class="login100-form-title"></span>Job Profile Details</h1>
+
+					<table class="container  text-colour" >
+						<link rel="stylesheet" href="{% static 'css/table.css' %}" />
+						<br /><br />
+						<tbody>
+							<tr>    
+								<td>Company Name</td>
+								<td>{{offer.company.name}}</td>
+							</tr>
+							<tr>
+								<td>Designation</td>
+								<td>{{offer.designation}}</td>
+							</tr>
+						<tr>
+								<td>No. of Vacancies</td>
+								<td>{{offer.no_of_vaccancies}}</td>
+							</tr>
+						<tr>
+								<td>Full Time/ Part Time</td>
+								<td>{{offer.job_type}}</td>
+							</tr>
+						<tr>
+								<td>WFH/Offline</td>
+								<td>{{offer.mode_of_work}}</td>
+							</tr>
+							<tr>
+								<td>Qualification looking for</td>
+								<td>{{offer.qualifications}}</td>
+							</tr>
+							<tr>
+								<td>Year of Graduation</td>
+								<td>{{offer.year_of_graduation}}</td>
+							</tr>
+							<tr>
+								<td>Discipline looking for</td>
+								<td>{{offer.discipline_required}}</td>
+							</tr>
+							<tr>
+								<td>Last Date</td>
+								<td>{{offer.last_date}}</td>
+							</tr>
+							<tr>
+								<td>Eligibility Criteria</td>
+								<td>{{offer.eligibility}}</td>
+							</tr><tr>
+								<td>Bond Contract</td>
+								<td>{{offer.bond_contract}}</td>
+							</tr><tr>
+								<td>CTC PA</td>
+								<td>{{offer.ctc_pa}}</td>
+							</tr>
+						</tbody>
+						</table>
+						<br><br><br> 
+						<table class="container  text-colour">
+						<tbody>
+						<h1 class="login100-form-title">Selection Procedure</h1>
+							<tr>    
+								<td>Shortlist from Resume (y/n)</td>
+								{% if offer.shortlist %}
+									<td>Yes</td>
+								{% else %}
+									<td>No</td>
+								{% endif %}
+							</tr>
+							<tr>    
+								<td>Written Test (y/n)</td>
+								{% if offer.written_test %}
+									<td>Yes</td>
+								{% else %}
+									<td>No</td>
+								{% endif %}
+							</tr>
+							<tr>    
+								<td>GD (y/n)</td>
+								{% if offer.gd %}
+									<td>Yes</td>
+								{% else %}
+									<td>No</td>
+								{% endif %}
+							</tr>
+							<tr>    
+								<td>No of Rounds </td>
+								<td>{{offer.no_of_rounds}}</td>
+							</tr>
+							<tr>    
+								<td>Extra Comments</td>
+								<td>{{offer.extra_comments}}</td>
+							</tr>
+						</tbody>
+					</table>  
+					<br><br><br><br><br><br><br><br>
+					<br><br><br><br><br><br><br><br>
+					<br><br><br><br><br><br><br><br>
+					<button class="homepgbtn-form-btn" onclick="location='/student/apply/{{offer.id}}'">
+						Apply
+					</button>
+
+			</div>
+		</body>
+	</html>  
